@@ -21,38 +21,51 @@ int main() {
 
     while(true) {
         Keys = getch();
-        if (Keys == 77) {
-            poz_x+=1;
-            gotoxy(poz_x,poz_y);
-            cout << char(42);
-            gotoxy(poz_x-1,poz_y);
-            cout << " ";
 
+        while (Keys != 60) {
+            Keys = getch();
         }
 
-        else if (Keys == 75) {
-            poz_x-=1;
-            gotoxy(poz_x,poz_y); //72 vniz 80 verh
-            cout << char(42);
-            gotoxy(poz_x+1,poz_y);
-            cout << " ";
-        }
+        while (Keys != 59) {
+          int n = 72 + (rand() % (80 - 72 + 1));
+          if (n == 77 || n == 75 || n == 72 || n == 80) {
+              if (n == 77) { //right
+                  poz_x+=1;
+                  gotoxy(poz_x,poz_y);
+                  cout << char(42);
+                  gotoxy(poz_x-1,poz_y);
+                  cout << " ";
+              }
 
-        else if (Keys == 72 ) {
-            poz_y-=1;
-            gotoxy(poz_x,poz_y); //72 vniz 80 verh
-            cout << char(42);
-            gotoxy(poz_x,poz_y+1);
-            cout << " ";
-        }
+              else if (n == 75) { // left
+                  poz_x-=1;
+                  gotoxy(poz_x,poz_y);
+                  cout << char(42);
+                  gotoxy(poz_x+1,poz_y);
+                  cout << " ";
+              }
 
-        else if (Keys == 80 ) {
-            poz_y+=1;
-            gotoxy(poz_x,poz_y); //72 vniz 80 verh
-            cout << char(42);
-            gotoxy(poz_x,poz_y-1);
-            cout << " ";
+              else if (n == 80 ) { //down
+                  poz_y-=1;
+                  gotoxy(poz_x,poz_y);
+                  cout << char(42);
+                  gotoxy(poz_x,poz_y+1);
+                  cout << " ";
+              }
+
+              else if (n == 72 ) { //up
+                  poz_y+=1;
+                  gotoxy(poz_x,poz_y);
+                  cout << char(42);
+                  gotoxy(poz_x,poz_y-1);
+                  cout << " ";
+              }
+              Keys = getch();
+              Sleep(200);
+          }
         }
+        cout << "Game over";
+        exit(1);
     }
 
     cin.get();
